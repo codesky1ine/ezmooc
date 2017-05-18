@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aszy.ezmooc.mapper.VideoMapper">
+  <resultMap id="BaseResultMap" type="com.aszy.ezmooc.po.Video">
+    <id column="VIDEO_ID" jdbcType="VARCHAR" property="videoId" />
+    <result column="VIDEO_NAME" jdbcType="VARCHAR" property="videoName" />
+    <result column="VIDEO_URL" jdbcType="VARCHAR" property="videoUrl" />
+    <result column="COURSE_ID" jdbcType="VARCHAR" property="courseId" />
+    <result column="APPEND_TIME" jdbcType="VARCHAR" property="appendTime" />
+    <result column="EDIT_TIME" jdbcType="VARCHAR" property="editTime" />
+    <association property="course"  javaType="com.aszy.ezmooc.po.Course" > 
+		<id property="courseId" column="COURSE_ID"/>
+		<result property="courseName" column="COURSE_NAME"/>
+	</association>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    VIDEO_ID, VIDEO_NAME, VIDEO_URL, v.COURSE_ID, v.APPEND_TIME, EDIT_TIME, c.COURSE_NAME
+  </sql>
+  <select id="selectByExample" parameterType="com.aszy.ezmooc.po.VideoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from video v, course c
+    <where>
+	    <if test="_parameter != null">
+	      <foreach collection="oredCriteria" item="criteria" separator="or">
+	        <if test="criteria.valid">
+	          <trim prefix="(" prefixOverrides="and" suffix=")">
+	            <foreach collection="criteria.criteria" item="criterion">
+	              <choose>
+	                <when test="criterion.noValue">
+	                  and ${criterion.condition}
+	                </when>
+	                <when test="criterion.singleValue">
+	                  and ${criterion.condition} #{criterion.value}
+	                </when>
+	                <when test="criterion.betweenValue">
+	                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+	                </when>
+	                <when test="criterion.listValue">
+	                  and ${criterion.condition}
+	                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+	                    #{listItem}
+	                  </foreach>
+	                </when>
+	              </choose>
+	            </foreach>
+	          </trim>
+	        </if>
+	      </foreach>
+	    </if>
+	    and	c.course_id = v.course_id
+    </where>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="startIndex != null and pageSize != null">
+      limit #{startIndex},#{pageSize}
+    </if>
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from video v,course c
+    where VIDEO_ID = #{videoId,jdbcType=VARCHAR}
+    and v.course_id = c.course_id
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from video
+    where VIDEO_ID = #{videoId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aszy.ezmooc.po.VideoExample">
+    delete from video
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aszy.ezmooc.po.Video">
+    insert into video (VIDEO_ID, VIDEO_NAME, VIDEO_URL, 
+      COURSE_ID, APPEND_TIME, EDIT_TIME
+      )
+    values (#{videoId,jdbcType=VARCHAR}, #{videoName,jdbcType=VARCHAR}, #{videoUrl,jdbcType=VARCHAR}, 
+      #{courseId,jdbcType=VARCHAR}, #{appendTime,jdbcType=VARCHAR}, #{editTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aszy.ezmooc.po.Video">
+    insert into video
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="videoId != null">
+        VIDEO_ID,
+      </if>
+      <if test="videoName != null">
+        VIDEO_NAME,
+      </if>
+      <if test="videoUrl != null">
+        VIDEO_URL,
+      </if>
+      <if test="courseId != null">
+        COURSE_ID,
+      </if>
+      <if test="appendTime != null">
+        APPEND_TIME,
+      </if>
+      <if test="editTime != null">
+        EDIT_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="videoId != null">
+        #{videoId,jdbcType=VARCHAR},
+      </if>
+      <if test="videoName != null">
+        #{videoName,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null">
+        #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null">
+        #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="appendTime != null">
+        #{appendTime,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aszy.ezmooc.po.VideoExample" resultType="java.lang.Integer">
+    select count(*) from video
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update video
+    <set>
+      <if test="record.videoId != null">
+        VIDEO_ID = #{record.videoId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videoName != null">
+        VIDEO_NAME = #{record.videoName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videoUrl != null">
+        VIDEO_URL = #{record.videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseId != null">
+        COURSE_ID = #{record.courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appendTime != null">
+        APPEND_TIME = #{record.appendTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.editTime != null">
+        EDIT_TIME = #{record.editTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update video
+    set VIDEO_ID = #{record.videoId,jdbcType=VARCHAR},
+      VIDEO_NAME = #{record.videoName,jdbcType=VARCHAR},
+      VIDEO_URL = #{record.videoUrl,jdbcType=VARCHAR},
+      COURSE_ID = #{record.courseId,jdbcType=VARCHAR},
+      APPEND_TIME = #{record.appendTime,jdbcType=VARCHAR},
+      EDIT_TIME = #{record.editTime,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aszy.ezmooc.po.Video">
+    update video
+    <set>
+      <if test="videoName != null">
+        VIDEO_NAME = #{videoName,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null">
+        VIDEO_URL = #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null">
+        COURSE_ID = #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="appendTime != null">
+        APPEND_TIME = #{appendTime,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        EDIT_TIME = #{editTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where VIDEO_ID = #{videoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aszy.ezmooc.po.Video">
+    update video
+    set VIDEO_NAME = #{videoName,jdbcType=VARCHAR},
+      VIDEO_URL = #{videoUrl,jdbcType=VARCHAR},
+      COURSE_ID = #{courseId,jdbcType=VARCHAR},
+      APPEND_TIME = #{appendTime,jdbcType=VARCHAR},
+      EDIT_TIME = #{editTime,jdbcType=VARCHAR}
+    where VIDEO_ID = #{videoId,jdbcType=VARCHAR}
+  </update>
+</mapper>

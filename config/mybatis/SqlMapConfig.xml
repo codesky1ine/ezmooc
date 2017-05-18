@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<!-- 批量定义别名，别名就使用类名，首字母无所谓大小写 -->
+		<package name="com.aszy.ezmooc.po"/>
+	</typeAliases>
+	
+ 	
+</configuration>

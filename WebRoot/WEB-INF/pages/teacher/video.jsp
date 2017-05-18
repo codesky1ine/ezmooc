@@ -89,7 +89,7 @@
 									取消
 								</button>
 								<button type="submit" class="btn btn-primary" id="add_confirm">
-									确认【
+									确认
 								</button>
 							</div>
 							</form>

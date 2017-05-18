@@ -9,6 +9,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.aszy.ezmooc.common.EzUtils;
 import com.aszy.ezmooc.mapper.CourseMapper;
 import com.aszy.ezmooc.po.Course;
 import com.aszy.ezmooc.po.CourseCatg;
@@ -38,7 +39,7 @@ public class CourseServiceImpl implements CourseService{
 	public Object queryCourse(Map params) {
 		
 		CourseExample courseExample = new CourseExample();
-		
+		courseExample.setOrderByClause("COURSE_NAME");
 		Criteria criteria = courseExample.createCriteria();
 		
 		//条件查询
@@ -190,6 +191,8 @@ public class CourseServiceImpl implements CourseService{
 	public String addCourse (Course course){
 		String courseId = UUID.randomUUID().toString().replace("-", "");
 		course.setCourseId(courseId);
+		//course.setTeacherId(EzUtils.loginUser.getUserId());
+		course.setTeacherId("001");
 		cm.insertSelective(course);
 		return courseId;
 	}

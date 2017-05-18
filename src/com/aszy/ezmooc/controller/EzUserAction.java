@@ -166,52 +166,17 @@ public class EzUserAction {
 		
 		if(iconFile != null){
 			//D:\\apache-tomcat-6.0.10\\apache-tomcat-6.0.10\\webapps\\ssm\\resourse\\user\\001\\icon.jpg
-			String path = session.getServletContext().getRealPath("resourse");
+			String path = session.getServletContext().getRealPath("resource");
 			String directory = path+"\\user\\"+loginUserId;
 			String iconURL = EzUtils.ezFileUpload(iconFile, directory, "icon");
 			user.setUserIcon(iconURL);
 		}
 		
+		user.setUserId(loginUserId);
+		us.editUser(user);
+		
+		//更新完之后，查一次完整的用户数据，作为当前登录用户的数据。
 		EzUser editUser = us.queryUserById(loginUserId);
-		
-		/*if(user.getAddress() != null){
-			editUser.setAddress(user.getAddress());
-		}
-		if(user.getAge() != null){
-			editUser.setAge(user.getAge());
-		}
-		if(user.getEmail() != null){
-			editUser.setEmail(user.getEmail());
-		}
-		if(user.getPassword() != null){
-			editUser.setPassword(user.getPassword());
-		}
-		if(user.getPhone() != null){
-			editUser.setPhone(user.getPhone());
-		}
-		if(user.getProfession() != null){
-			editUser.setProfession(user.getProfession());
-		}
-		if(user.getRoleId() != null){
-			editUser.setRoleId(user.getRoleId());
-		}
-		if(user.getSex() != null){
-			editUser.setSex(user.getSex());
-		}
-		if(user.getUserIcon() != null){
-			editUser.setUserIcon(user.getUserIcon());
-		}
-		if(user.getUserId() != null){
-			editUser.setUserId(user.getUserId());
-		}
-		if(user.getUserInfo() != null){
-			editUser.setUserInfo(user.getUserInfo());
-		}
-		if(user.getUserName() != null){
-			editUser.setUserName(user.getUserName());
-		}*/
-		
-		us.editUser(editUser);
 		session.setAttribute("loginUser", editUser);
 		
 		return "user/userHome";

@@ -50,10 +50,10 @@ public class AdminAction {
 	@RequestMapping("/teacher/view")
 	public @ResponseBody String teacherList(EzUser teacher, Integer page){
 		
-		if(page == null){
+		if(page == null || page == 0){
 			page = 1;
 		}
-		Object[] param = ts.queryTeacher(teacher, page, 4);
+		Object[] param = ts.queryTeacher(teacher, page, 8);
 		List<EzUser> teachers = (List<EzUser>) param[0];
 		Integer pageCount = (Integer) param[1];
 		if(page > pageCount){
@@ -128,10 +128,10 @@ public class AdminAction {
 	@RequestMapping("/courseCatg/view")
 	public @ResponseBody String courseCatgList(CourseCatg cc, Integer page){
 		
-		if(page == null){
+		if(page == null || page == 0){
 			page = 1;
 		}
-		Object[] param = ccs.queryCourseCatg(cc, page, 4);
+		Object[] param = ccs.queryCourseCatg(cc, page, 8);
 		List<CourseCatg> ccs = (List<CourseCatg>) param[0];
 		Integer pageCount = (Integer) param[1];
 		if(page > pageCount){

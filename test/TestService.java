@@ -68,14 +68,13 @@ public class TestService {
 	public void testAddCourse(){
 		Course course = new Course();
 		
-		CourseCatg cc = new CourseCatg();
-		cc.setCourseCatgId("111");
-		
-		course.setCourseCatg(cc);
-		
-		cs.addCourse(course);
-		
-		System.out.println();
+		for (int i = 1; i < 50; i++) {
+			course.setCourseCatgId("03a0f661d9b64186a40b0f43b929b1e8");
+			course.setCourseName("这是测试课程"+i);
+			course.setCourseInfo("测试课程详情测试课程详情测试课程详情测试课程详情测试课程详情");
+			
+			cs.addCourse(course);
+		}
 		
 	}
 	@Test

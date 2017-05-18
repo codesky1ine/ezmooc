@@ -59,7 +59,7 @@ public class TeacherAction {
 	@RequestMapping("/course/view")
 	public @ResponseBody String courseList(Course course, Integer page){
 		
-		if(page == null){
+		if(page == null || page == 0){
 			page = 1;
 		}
 		Object[] param = (Object[]) cs.queryCourse(course == null ? null : course.getCourseName(), page, 8);
@@ -208,7 +208,7 @@ public class TeacherAction {
 	@RequestMapping("/video/view")
 	public @ResponseBody String videoList(Video video, Integer page){
 		
-		if(page == null){
+		if(page == null || page == 0){
 			page = 1;
 		}
 		Object[] param = (Object[]) vs.queryVideo(video == null ? null : video, page, 8);

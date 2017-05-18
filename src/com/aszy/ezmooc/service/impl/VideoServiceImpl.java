@@ -68,6 +68,7 @@ public class VideoServiceImpl implements VideoService{
 			ve.setStartIndex(startIndex);
 			ve.setPageSize(pageSize);
 		}
+		ve.setOrderByClause("VIDEO_NAME");
 		dataList = vm.selectByExample(ve);
 		
 		return new Object[]{dataList, pageCount, page};

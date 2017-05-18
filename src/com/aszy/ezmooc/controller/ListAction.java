@@ -40,9 +40,16 @@ public class ListAction {
 		}
 		
 		//分页查询结果
-		Object[] pageData = (Object[]) cs.queryCourse(courseCatgId, page, 8, sort);
+		Object[] pageData = (Object[]) cs.queryCourse(courseCatgId, page, 12, sort);
 		List<Course> courseList = (List<Course>) pageData[0];
 		Integer pageCount = (Integer) pageData[1];
+		
+		for (Course course : courseList) {
+			if( course.getCourseImage() == null ){
+				course.setCourseImage("/ezmooc/resource/course/default/cimage.png");
+			}
+		}
+		
 		
 		//课程类别查询
 		List<CourseCatg> courseCatgList = css.queryAllCourseCatg();

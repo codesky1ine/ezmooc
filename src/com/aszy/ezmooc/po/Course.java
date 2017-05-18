@@ -19,9 +19,6 @@ public class Course {
 
     private String appendTime;
     
-    public Course(){
-    	courseImage = "/ezmooc/resource/course/default/cimage.png";
-    }
     
     public String getCourseCatgId() {
 		return courseCatgId;

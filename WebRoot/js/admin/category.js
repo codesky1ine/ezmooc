@@ -2,6 +2,32 @@ var page = 1;
 //当类别名从A改为B再改回A时，会查询到A已经存在。此处引入该变量避免自身查询。
 var currentUpdateCcname;
 
+/* @笔记 	
+	设置contentType:"application/json"，data则为json字符串
+	这种写法，后台参数接收出错页面会报400错误
+	$.ajax({
+		type:"post",
+		url:"${pageContext.request.contextPath }/item/editItemSubmit_RequestJson.action",
+		contentType:"application/json;charset=utf-8",
+		data:'{"name":"测试商品","price":99.9}',
+		success:function(data){
+			alert(data);
+		}
+	});
+	不设置contentType，默认为application/x-www-form-urlencoded，data为键值对json（不是字符串）
+	这种写法，后台参数接收出错页面会报500错误
+	$.ajax({
+		type:"post",
+		url:"${pageContext.request.contextPath }/item/editItemSubmit_RequestJson.action",
+		data:{"name":"测试商品","price":99.9},
+		success:function(data){
+			alert(data);
+		}
+	});
+	
+	dataType	预期的服务器响应的数据类型。
+*/
+
 function requestList(data){
 	$.ajax({
 		"type":"POST",

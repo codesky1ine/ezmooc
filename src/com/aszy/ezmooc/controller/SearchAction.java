@@ -57,8 +57,8 @@ public class SearchAction {
 	 */
 	
 	/*
-	 * 参数String keyword = "keyword=1" 而不是 String keyword = "1" ：
-	 * 		不写@RequestBody即可 
+	 * @RequestBody 接收一个Json字符串 并解析
+	 * 
 	 * ajax返回乱码：
 	 * 		@RequestMapping中加上 produces="application/x-www-form-urlencoded; charset=utf-8"
 	 * 

@@ -32,7 +32,7 @@ public class ListAction {
 	
 	//@RequestMapping(value={"/","/list"})
 	@SuppressWarnings({ "unchecked" })
-	@RequestMapping("list")
+	@RequestMapping("/list")
 	public String list(HttpServletRequest req, Integer page, String courseCatgId, String sort){
 		
 		if(page == null){

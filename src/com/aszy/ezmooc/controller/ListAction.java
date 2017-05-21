@@ -50,7 +50,6 @@ public class ListAction {
 			}
 		}
 		
-		
 		//课程类别查询
 		List<CourseCatg> courseCatgList = css.queryAllCourseCatg();
 		

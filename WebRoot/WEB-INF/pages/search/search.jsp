@@ -10,14 +10,6 @@
 		
 		<script src="${ pageContext.request.contextPath }/js/lib/jquery-2.0.0.min.js"></script>
 		<script src="${ pageContext.request.contextPath }/js/search/search.js"></script>
-		
-		<%--<link href="${ pageContext.request.contextPath }/css/main.css"rel="stylesheet">
-		<link href="${ pageContext.request.contextPath }/css/login.css"rel="stylesheet">
-		<link href="${ pageContext.request.contextPath }/css/signin.css" rel="stylesheet">
-		<link href="${ pageContext.request.contextPath }/css/admin_header.css" rel="stylesheet">
-		<link href="${ pageContext.request.contextPath }/css/self_bt.css" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/css/search.css">
-	--%>
 	</head>
 	<body>
 		<div id="indextop" class="header ">
@@ -65,21 +57,7 @@
 			</a>
 		</div>
 		<div class="video-list container" id="video-item" style="display: block;">
-			<%--<c:forEach items="${ courses }" var="course">
-				<a class="item" target="_blank" href="play.do?cname=${ course.cname }">
-					<div class="left" style="height: 130px; width: 200px">
-						<img src="${ course.cimage }" style="height: 130px; width: 200px">
-					</div>
-					<div class="right">
-						<div class="title">
-							${ course.cname }
-						</div>
-						<div class="date">
-							${ course.cinfo }
-						</div>
-					</div>
-				 </a>
-			</c:forEach>
-		--%></div>
+		
+		</div>
 	</body>
 </html>

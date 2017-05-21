@@ -1,5 +1,6 @@
 $(function(){
 	
+	//如果是从导航栏输入关键字进行搜索，跳转到搜索界面，则执行搜索请求。
 	if ($('#inputKeyWord').val().length != 0) {
 		$('#searchStr').html('');
 		searchCourse();

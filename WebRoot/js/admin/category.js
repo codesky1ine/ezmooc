@@ -4,7 +4,7 @@ var currentUpdateCcname;
 
 /* @笔记 	
 	设置contentType:"application/json"，data则为json字符串
-	这种写法，后台参数接收出错页面会报400错误
+	这种写法，若后台参数接收出错，则页面会报400错误
 	$.ajax({
 		type:"post",
 		url:"${pageContext.request.contextPath }/item/editItemSubmit_RequestJson.action",
@@ -15,7 +15,7 @@ var currentUpdateCcname;
 		}
 	});
 	不设置contentType，默认为application/x-www-form-urlencoded，data为键值对json（不是字符串）
-	这种写法，后台参数接收出错页面会报500错误
+	这种写法，若后台参数接收出错，则页面会报500错误
 	$.ajax({
 		type:"post",
 		url:"${pageContext.request.contextPath }/item/editItemSubmit_RequestJson.action",
@@ -25,7 +25,8 @@ var currentUpdateCcname;
 		}
 	});
 	
-	dataType	预期的服务器响应的数据类型。
+	dataType	预期的服务器响应给ajax回调函数的数据类型。
+				如果不指定，jQuery 将自动根据 HTTP 包 MIME 信息来智能判断
 */
 
 function requestList(data){
@@ -206,11 +207,11 @@ function refresh(msg) {
 
 function turnPage(){
 	var searchKey = $("#searchKey").val();
-	var searchType = $("#search_type").val();
+	//var searchType = $("#search_type").val();
 	var data = {"page":page};
 	
 	if(searchKey != ""){
-		data[searchType] = searchKey;
+		data["courseCatgName"] = searchKey;
 	}
 	
 	requestList(data);

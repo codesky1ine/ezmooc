@@ -62,7 +62,10 @@ public class TeacherAction {
 		if(page == null || page == 0){
 			page = 1;
 		}
-		Object[] param = (Object[]) cs.queryCourse(course == null ? null : course.getCourseName(), page, 8);
+		Object[] param = (Object[]) cs.queryCourse(
+				course == null ? null : course.getCourseName(), 
+				EzUtils.loginUser.getUserId() , page, 8);
+		
 		List<Course> courses = (List<Course>) param[0];
 		Integer pageCount = (Integer) param[1];
 		if(page > pageCount){
@@ -214,6 +217,10 @@ public class TeacherAction {
 		Object[] param = (Object[]) vs.queryVideo(video == null ? null : video, page, 8);
 		List<Video> videos = (List<Video>) param[0];
 		Integer pageCount = (Integer) param[1];
+		
+		if(pageCount == 0){
+			pageCount = 1;
+		}
 		if(page > pageCount){
 			page = pageCount;
 		}
@@ -296,7 +303,6 @@ public class TeacherAction {
 	@RequestMapping("/video/update")
 	public @ResponseBody String updateVideo(Video video, Integer page){
 		vs.editVideo(video);
-		
 		
 		JSONObject jo = JSONObject.fromObject(videoList(null,page));
 		jo.put("editVideoId", video.getVideoId());

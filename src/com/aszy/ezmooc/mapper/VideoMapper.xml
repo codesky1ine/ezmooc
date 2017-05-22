@@ -189,7 +189,7 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.aszy.ezmooc.po.VideoExample" resultType="java.lang.Integer">
-    select count(*) from video
+    select count(*) from video v
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>

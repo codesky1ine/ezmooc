@@ -10,7 +10,7 @@ public interface CourseService {
 	@SuppressWarnings("rawtypes")
 	public Object queryCourse(Map params); 
 	
-	public Object queryCourse(String keyword, Integer page, Integer pageSize);
+	public Object queryCourse(String keyword, String teacherId, Integer page, Integer pageSize);
 	
 	public Object queryCourse(String courseCatgId, Integer page, Integer pageSize, String sort);
 	

@@ -101,7 +101,7 @@ public class EzUserAction {
 			user = us.userLogin(user);
 			if(user != null){
 				//登录成功
-				if(user.getUserIcon() == null){
+				if(user.getUserIcon() == null || "".equals(user.getUserIcon())){
 					user.setUserIcon("/ezmooc/resource/user/default/uimage.jpg");
 				}
 				req.getSession().setAttribute("loginUser", user);

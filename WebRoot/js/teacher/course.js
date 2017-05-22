@@ -197,16 +197,16 @@ function refresh(msg) {
 	var pageUlHtml = genPageUl(pages, page);
 	$("#pageUl").html(pageUlHtml);
 	
-	$("#searchKey").val("");
+	//$("#searchKey").val("");
 }
 
 function turnPage(){
 	var searchKey = $("#searchKey").val();
-	var searchType = $("#search_type").val();
+	//var searchType = $("#search_type").val();
 	var data = {"page":page};
 	
 	if(searchKey != ""){
-		data[searchType] = searchKey;
+		data["courseName"] = searchKey;
 	}
 	
 	requestList(data);

@@ -128,14 +128,15 @@ public class CourseServiceImpl implements CourseService{
 		return queryCourse(params);
 	} 
 	
-	public Object queryCourse(String keyword, Integer page, Integer pageSize){
+	public Object queryCourse(String keyword, String teacherId, Integer page, Integer pageSize){
 		Map params = new HashMap();
+		Course course = new Course();
 		if(keyword != null){
-			Course course = new Course();
 			course.setCourseName(keyword);
 			course.setCourseInfo(keyword);
-			params.put("course", course);
 		}
+		course.setTeacherId(teacherId);
+		params.put("course", course);
 		params.put("page", page);
 		params.put("pageSize", pageSize);
 		return queryCourse(params);
@@ -191,8 +192,8 @@ public class CourseServiceImpl implements CourseService{
 	public String addCourse (Course course){
 		String courseId = UUID.randomUUID().toString().replace("-", "");
 		course.setCourseId(courseId);
-		//course.setTeacherId(EzUtils.loginUser.getUserId());
-		course.setTeacherId("001");
+		course.setTeacherId(EzUtils.loginUser.getUserId());
+		//course.setTeacherId("001");
 		cm.insertSelective(course);
 		return courseId;
 	}

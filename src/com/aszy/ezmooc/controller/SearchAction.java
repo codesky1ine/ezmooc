@@ -76,6 +76,13 @@ public class SearchAction {
 		params.put("course", course);
 		
 		List<Course> courses = (List<Course>) cs.queryCourse(params);
+		
+		for (Course courseTemp : courses) {
+			if( courseTemp.getCourseImage() == null ){
+				courseTemp.setCourseImage("/ezmooc/resource/course/default/cimage.png");
+			}
+		}
+		
 		JSONObject jo = new JSONObject();
 		jo.put("courses", courses);
 		return jo.toString();

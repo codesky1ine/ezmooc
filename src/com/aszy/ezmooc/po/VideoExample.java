@@ -345,13 +345,13 @@ public class VideoExample {
         }
 
         public Criteria andCourseIdEqualTo(String value) {
-            addCriterion("c.COURSE_ID =", value, "courseId");
+            addCriterion("v.COURSE_ID =", value, "courseId");
             return (Criteria) this;
         }
         
         
         public Criteria andTeacherIdEqualTo(String teacherId) {
-            addCriterion("COURSE_ID in (select COURSE_ID form course where TEACHER_ID = '"+teacherId+"')");
+            addCriterion("v.COURSE_ID in (select COURSE_ID from course where TEACHER_ID = '"+teacherId+"')");
             return (Criteria) this;
         }
         

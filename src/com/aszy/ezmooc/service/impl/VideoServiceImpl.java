@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.aszy.ezmooc.common.EzUtils;
 import com.aszy.ezmooc.mapper.VideoMapper;
 import com.aszy.ezmooc.po.Course;
 import com.aszy.ezmooc.po.CourseExample;
@@ -53,6 +54,8 @@ public class VideoServiceImpl implements VideoService{
 				c.andVideoNameLike(videoName);
 			}
 		}
+		
+		c.andTeacherIdEqualTo(EzUtils.loginUser.getUserId());
 		
 		//分页
 		Integer pageCount = null;

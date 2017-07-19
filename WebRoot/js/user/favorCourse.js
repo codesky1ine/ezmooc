@@ -1,18 +1,18 @@
-var isFavor = false;
-var isFollow = false;
+var isFavor = "false";
+var isFollow = "false";
 
 $(function(){
 	if( $('#favor-course').attr("class") == "icon-heart" ){
-		isFavor = true;
+		isFavor = "true";
 	}
 	if( $('#follow-teacher').attr("class") == "icon-heart" ){
-		isFollow = true;
+		isFollow = "true";
 	}
 })
 
 //收藏课程
 function favor(courseId){
-	if(isFavor){
+	if(isFavor == "true"){
 		
 		//已收藏，则取消收藏
 		$.ajax({
@@ -29,7 +29,7 @@ function favor(courseId){
 			}
 		});
 		
-	} else{
+	} else if(isFavor == "false"){
 		
 		//未收藏，则收藏
 		$.ajax({
@@ -51,7 +51,7 @@ function favor(courseId){
 
 //关注教师 
 function follow(teacherId){
-	if(isFollow){
+	if(isFollow == "true"){
 		
 		//已关注，则取消关注
 		$.ajax({
@@ -68,7 +68,7 @@ function follow(teacherId){
 			}
 		});
 		
-	} else{
+	} else if(isFavor == "false"){
 		
 		//未关注，则关注
 		$.ajax({

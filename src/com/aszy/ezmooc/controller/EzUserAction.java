@@ -211,7 +211,9 @@ public class EzUserAction {
 			us.unfavorCourse( new EzUserFavorKey( 
 					EzUtils.loginUser.getUserId(), courseId ) );
 			jo.put("isFavor", "false");
-		
+			boolean a = us.isFavorCourse(new EzUserFavorKey( 
+					EzUtils.loginUser.getUserId(), courseId ));
+			System.out.println();
 		}
 		return jo.toString();
 	} 

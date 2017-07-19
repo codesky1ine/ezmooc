@@ -7,7 +7,7 @@
 		<header id="header" class="nav navbar-inverse" style="height: 62px">
 		<div class="container-fluid">
 			<div class="logo f1" style="margin-top: 12px">
-				<a href="admin.jsp"> <img src="${ pageContext.request.contextPath }/images/logo2.png"></a> 
+				<a href="/ezmooc/teacher"> <img src="${ pageContext.request.contextPath }/images/logo2.png"></a> 
 			</div>
 			<div class="navbar-header f1">
 				<a href="/ezmooc/teacher/course">课程</a>

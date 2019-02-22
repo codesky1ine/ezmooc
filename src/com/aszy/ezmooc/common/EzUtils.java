@@ -37,7 +37,7 @@ public class EzUtils {
 				resourse.mkdirs();
 			}
 			resourse = new File(resourse, fileName+fileType);
-			
+			1
 			try {
 				file.transferTo( resourse );
 				
